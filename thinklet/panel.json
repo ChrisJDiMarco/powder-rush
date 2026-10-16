@@ -1,0 +1,467 @@
+{
+  "id": "jsu8wvbr",
+  "title": "Powder Rush",
+  "prompt": "A playable, jaw-dropping 2D side-view downhill skiing game, built as a self-contained canvas app that runs right in the panel (keyboard + touch). Think Alto's Odyssey meets Trials with real physics and premium pixel/sprite art.\n\nGRAPHICS (must look insane): multi-layer parallax mountains (5+ layers: distant peaks with snow caps, mid ridges, pine forests, foreground trees), dynamic sky with day/sunset/night/aurora cycle across runs, volumetric god rays, falling snow particles, wind gusts, powder spray and snow trails off the skis, sparkle on fresh powder, screen shake on hard landings, motion-blur speed lines at high speed, slow-mo on big air, bloom/glow on lights, smooth 60fps. A detailed animated skier sprite (procedurally drawn or pixel art: crouch, tuck, pole plant, jump, flips, grabs, wipeout ragdoll with tumbling limbs and lost skis). Night runs have headlamp light and lit lodges.\n\nPHYSICS: procedurally generated endless mountain terrain (smooth spline slopes, cliffs, kickers, rails, cornices, moguls, ice patches, deep powder that slows you) with real gravity, momentum, slope-based acceleration, friction varying by snow type, air rotation with angular momentum, landing-angle checks (land clean = speed boost, land badly = ragdoll crash). Avalanche chase events that rumble up behind you.\n\nGAMEPLAY: hold/tap to tuck and jump (space/up/tap), rotate in air for backflips/frontflips (left/right or hold), grab tricks (down). Trick combo system with multipliers and popups (\"DOUBLE BACKFLIP x3\"), coins/collectibles, obstacles (rocks, trees, snowmen, lodges, yetis), boost from clean landings. Score, distance, top speed in mph, best run saved in panel memory, unlockable skiers/outfits/skis with saved progress. Title screen, pause, game over screen with stats and instant retry.\n\nAUDIO: generated with WebAudio: wind rush scaling with speed, carve swish, landing thud, combo chimes, and a chill synth soundtrack with a mute toggle.\n\nMake it feel like a premium indie mobile game, polished UI with a frosty glass HUD.\n\nChange requested 2026-10-12: Three changes:\n1) GHOST TOGGLE: the ghost that replays your best run becomes an on/off toggle (a 👻 button on the title screen and in the HUD/pause menu, plus the G key). Remember the choice in saved memory. When it's off, hide the ghost and its \"beat the ghost\" bonus/line.\n2) OBSTACLES TOO FAST: obstacles reach the rider too quickly to react. Give more reaction time: space obstacles further apart (especially early in a run), ease the speed ramp so top speed builds more gradually, and add a subtle look-ahead warning (small icon/glow at the right edge) before rocks, trees, snowmen, lodges and yetis come on screen. Keep the camera framed a bit further ahead of the rider at high speed so more of the upcoming slope is visible. Difficulty can still build over the run, just fairer.\n3) FIRST-PERSON VIEW that's insanely cool: add a switchable first-person POV (V key or a view toggle on the title and pause screens, remembered in memory) using the same run, physics, terrain, obstacles, coins and scoring. Render it as a pseudo-3D/perspective downhill view: ski tips and pole hands in frame, the slope rushing toward you with pines, rocks, snowmen, lodges and yetis scaling up from the horizon, layered mountains and the day/sunset/night/aurora sky ahead, falling snow streaking past, powder spray kicking up, motion blur/speed lines and FOV widening as speed climbs, camera bob and lean into carves, the horizon tilting and dropping on jumps with a big airborne float and flips shown as the world rotating, hard-landing shake, a headlamp cone on night runs, and the avalanche roaring audibly with snow dust at the screen edges. Keep it at a smooth 60fps, with steering that feels responsive, and respect reduced motion by toning down shake, bob and rotation.",
+  "cadence": "manual",
+  "status": "ready",
+  "headline": "Powder Rush: first-person is now a full three.js 3D mountain",
+  "items": [],
+  "note": "",
+  "createdAt": 1791814231637,
+  "updatedAt": 1791945497571,
+  "mode": "scene",
+  "job": null,
+  "progress": null,
+  "sceneError": null,
+  "scene": {
+    "aspect": "4:5",
+    "caption": "Version 32 (full 3D POV, as you asked): a real three.js valley with lit snow, sun shadows, 9-tier spruce forests, 3D ranges and sky, your skis, poles and gloves",
+    "day": 30,
+    "state": {
+      "version": 32
+    },
+    "log": [
+      {
+        "day": 1,
+        "text": "Drop in: chain flips and grabs, and outrun the avalanche",
+        "at": 1791815750935,
+        "kind": "build"
+      },
+      {
+        "day": 2,
+        "text": "Version 2: a BEST flag on the slope, a run-history chart on the game-over screen, clearer control chips, and it auto-pauses when hidden",
+        "at": 1791816260730,
+        "kind": "evolve"
+      },
+      {
+        "day": 3,
+        "text": "Version 3: daily challenge worth ◉120, flips counted, lifetime totals saved, a bar toward the next rider, and safer save loading",
+        "at": 1791816308098,
+        "kind": "evolve"
+      },
+      {
+        "day": 4,
+        "text": "Version 4: CLOSE CALL bonuses for skimming over obstacles, a saved best for each sky, game over shows coins to the next rider, plus mute/menu voice commands",
+        "at": 1791816337422,
+        "kind": "evolve"
+      },
+      {
+        "day": 5,
+        "text": "Version 5: a ghost replays your longest run beside you, a daily play streak, R to restart instantly, and a tidier title screen on small cards",
+        "at": 1791816369812,
+        "kind": "evolve"
+      },
+      {
+        "day": 6,
+        "text": "Version 6: Perfect Landing bonus and speed boost, today's best saved, a Space hint on Drop in, and the streak no longer breaks late at night",
+        "at": 1791816401490,
+        "kind": "evolve"
+      },
+      {
+        "day": 7,
+        "text": "Version 7: coin magnet power-up over kickers, a slow-mo 3-2-1 drop-in countdown, magnet timer in the HUD, and an evening 'daily ends tonight' nudge",
+        "at": 1791816436910,
+        "kind": "evolve"
+      },
+      {
+        "day": 8,
+        "text": "Version 8: avalanche warning shows meters behind you, last run on the title, shooting stars in night skies, saves no longer overwritten mid-run",
+        "at": 1791816460227,
+        "kind": "evolve"
+      },
+      {
+        "day": 9,
+        "text": "Version 9: control tips during early runs, lifetime perfect landings and airtime saved, a time-of-day greeting, a clearer last-run line and stats that scroll",
+        "at": 1791816482179,
+        "kind": "evolve"
+      },
+      {
+        "day": 10,
+        "text": "Version 10: same mountain all day, ghost races on its own course, +250 for beating it, combo timer bar, tidier last-run line",
+        "at": 1791816518709,
+        "kind": "evolve"
+      },
+      {
+        "day": 11,
+        "text": "Version 11: ↓ carves to slow down with a snow spray, run count saved per rider, ←/→ picks a rider on the title, swipe-grab fix, ghost safe on sync",
+        "at": 1791816549951,
+        "kind": "evolve"
+      },
+      {
+        "day": 11,
+        "text": "Version 12: 👻 ghost on/off (G), 🎥 first-person view (V), wider gaps between obstacles early on, warning icons at the screen edge, and top speed builds up more",
+        "at": 1791816924263,
+        "kind": "change"
+      },
+      {
+        "day": 12,
+        "text": "Version 13 (more AAA first-person, as you asked): sun lens flare in POV, red danger glow on close obstacles, tidy one-line title subtitle",
+        "at": 1791817283396,
+        "kind": "evolve",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome"
+      },
+      {
+        "day": 13,
+        "text": "Version 14 (more AAA first-person, as you asked): landing reticle in the air, mph gauge, shaded snow with sun glints, best score kept per view",
+        "at": 1791817332609,
+        "kind": "evolve",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome"
+      },
+      {
+        "day": 14,
+        "text": "Version 15 (more AAA first-person, as you asked): goggle-lens view, next-hazard callout with meters, runs counted per view, full title subtitle",
+        "at": 1791817364780,
+        "kind": "evolve",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome"
+      },
+      {
+        "day": 15,
+        "text": "Version 16 (more AAA first-person, as you asked): slope radar for hazards, jump-charge ring, tracks that curve with turns, color fringe at speed, one-line title",
+        "at": 1791817401903,
+        "kind": "evolve",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome"
+      },
+      {
+        "day": 16,
+        "text": "Version 17 (more AAA first-person, as you asked): screen edges close in at speed, white flash on hard landings, flip degrees shown in the air",
+        "at": 1791817419587,
+        "kind": "evolve",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome"
+      },
+      {
+        "day": 17,
+        "text": "Version 18 (more AAA POV, as you asked): soft shadows ground trees and hazards, smooth landing shake, 60/100/140 mph popups, view shown on title",
+        "at": 1791817450056,
+        "kind": "evolve",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome"
+      },
+      {
+        "day": 18,
+        "text": "Version 19 (more AAA POV, as you asked): corduroy lines rush at you, hazards whoosh past, snow draws in half the steps, V/G/M keys shown",
+        "at": 1791817489813,
+        "kind": "evolve",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome"
+      },
+      {
+        "day": 19,
+        "text": "Version 20 (more AAA POV, as you asked): flakes land and melt on your goggles, clear 🔇/🔊 icon, toasts on V/G/M, per-view best on results",
+        "at": 1791817525047,
+        "kind": "evolve",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome"
+      },
+      {
+        "day": 20,
+        "text": "Version 21 (more AAA POV, as you asked): low haze drifts across the slope ahead, and big air glows with sky light",
+        "at": 1791817541290,
+        "kind": "evolve",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome"
+      },
+      {
+        "day": 21,
+        "text": "Version 22 (more AAA POV, as you asked): FOV punch on clean landings, rooster-tail spray when you carve, POV control tips, lighter mountain drawing",
+        "at": 1791817577217,
+        "kind": "evolve",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome"
+      },
+      {
+        "day": 22,
+        "text": "Version 23 (more AAA POV, as you asked): photo snow texture in perspective, sunlit ridges, horizon pines, soft powder puffs, detailed skis",
+        "at": 1791821166153,
+        "kind": "evolve",
+        "focus": "visual",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome, that means you can make it three.js 3d and super high fidelity"
+      },
+      {
+        "day": 23,
+        "text": "Version 24 (more AAA POV, as you asked): photoreal Alps on the horizon, photo pines, sunlit slope and long shadows, lens bokeh flakes, sculpted gloves",
+        "at": 1791821344945,
+        "kind": "evolve",
+        "focus": "visual",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome, that means you can make it three.js 3d and super high fidelity"
+      },
+      {
+        "day": 24,
+        "text": "Version 25 (pushing the POV toward AAA): wind-sculpted drifts, radial zoom blur, swaying pines, horizon light scatter, ski contact shadows",
+        "at": 1791821588372,
+        "kind": "evolve",
+        "focus": "visual",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome, that means you can make it three.js 3d and super high fidelity"
+      },
+      {
+        "day": 25,
+        "text": "Version 26 (more AAA POV, as you asked): valley walls with climbing forest, drifting cloud shadows, snow-packed tree bases, powder bow wave, frosty breath",
+        "at": 1791822098517,
+        "kind": "evolve",
+        "focus": "visual",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome, that means you can make it three.js 3d and super high fidelity"
+      },
+      {
+        "day": 26,
+        "text": "Version 27 (more AAA POV, as you asked): your shadow on the snow, quilted sleeves, glare ice sheen, snow on ski tips, anamorphic sun streak",
+        "at": 1791822308041,
+        "kind": "evolve",
+        "focus": "visual",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome, that means you can make it three.js 3d and super high fidelity"
+      },
+      {
+        "day": 27,
+        "text": "Version 28 (three.js POV, as you asked): real 3D clearcoat skis, poles & gloves, bloom, sunlit lens dirt, landing powder bursts, mirror-lens sheen",
+        "at": 1791822755421,
+        "kind": "evolve",
+        "focus": "visual",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome, that means you can make it three.js 3d and super high fidelity"
+      },
+      {
+        "day": 28,
+        "text": "Version 29 (more 3D POV, as you asked): real 3D snow-laden spruces, snow-capped boulders, snow sloughing off boughs, carved ski grooves, pole wrist straps",
+        "at": 1791823032181,
+        "kind": "evolve",
+        "focus": "visual",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome, that means you can make it three.js 3d and super high fidelity"
+      },
+      {
+        "day": 29,
+        "text": "Version 30 (more 3D POV, as you asked): real sun shadows on the slope, 3D snowmen, shaggy yetis with glowing eyes, 3D hazard rocks & trees, chrome rails",
+        "at": 1791823523820,
+        "kind": "evolve",
+        "focus": "visual",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome, that means you can make it three.js 3d and super high fidelity"
+      },
+      {
+        "day": 30,
+        "text": "Version 31 (more 3D POV, as you asked): 3D timber lodges, glowing windows lighting the snow, chimney smoke, 3D gold coins, star glints",
+        "at": 1791823911610,
+        "kind": "evolve",
+        "focus": "visual",
+        "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome, that means you can make it three.js 3d and super high fidelity"
+      },
+      {
+        "day": 30,
+        "text": "Version 32 (full 3D POV, as you asked): a real three.js valley with lit snow, sun shadows, 9-tier spruce forests, 3D ranges and sky, your skis, poles and gloves",
+        "at": 1791945497571,
+        "kind": "change"
+      }
+    ],
+    "rev": 32,
+    "evolvedAt": 1791823911610,
+    "bytes": 255775,
+    "interactive": true
+  },
+  "evolve": false,
+  "costs": [
+    {
+      "at": 1791817577222,
+      "usd": 0.3685,
+      "kind": "evolve",
+      "ms": 35903,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "at": 1791821166163,
+      "usd": 0.0136,
+      "kind": "evolve",
+      "ms": 319120,
+      "via": "agent",
+      "label": "Claude Code",
+      "billing": "unknown",
+      "minutes": 5.3,
+      "pays": "its own setup"
+    },
+    {
+      "at": 1791821344953,
+      "usd": 0.0217,
+      "kind": "evolve",
+      "ms": 172421,
+      "via": "agent",
+      "label": "Claude Code",
+      "billing": "unknown",
+      "minutes": 2.9,
+      "pays": "its own setup"
+    },
+    {
+      "at": 1791821588383,
+      "usd": 0,
+      "kind": "evolve",
+      "ms": 236095,
+      "via": "agent",
+      "label": "Claude Code",
+      "billing": "unknown",
+      "minutes": 3.9,
+      "pays": "its own setup"
+    },
+    {
+      "at": 1791822098528,
+      "usd": 0,
+      "kind": "evolve",
+      "ms": 504176,
+      "via": "agent",
+      "label": "Claude Code",
+      "billing": "unknown",
+      "minutes": 8.4,
+      "pays": "its own setup"
+    },
+    {
+      "at": 1791822308055,
+      "usd": 0,
+      "kind": "evolve",
+      "ms": 203165,
+      "via": "agent",
+      "label": "Claude Code",
+      "billing": "unknown",
+      "minutes": 3.4,
+      "pays": "its own setup"
+    },
+    {
+      "at": 1791822755430,
+      "usd": 0,
+      "kind": "evolve",
+      "ms": 438354,
+      "via": "agent",
+      "label": "Claude Code",
+      "billing": "unknown",
+      "minutes": 7.3,
+      "pays": "its own setup"
+    },
+    {
+      "at": 1791823032188,
+      "usd": 0,
+      "kind": "evolve",
+      "ms": 263584,
+      "via": "agent",
+      "label": "Claude Code",
+      "billing": "unknown",
+      "minutes": 4.4,
+      "pays": "its own setup"
+    },
+    {
+      "at": 1791823523827,
+      "usd": 0,
+      "kind": "evolve",
+      "ms": 484412,
+      "via": "agent",
+      "label": "Claude Code",
+      "billing": "unknown",
+      "minutes": 8.1,
+      "pays": "its own setup"
+    },
+    {
+      "at": 1791823911622,
+      "usd": 0,
+      "kind": "evolve",
+      "ms": 379175,
+      "via": "agent",
+      "label": "Claude Code",
+      "billing": "unknown",
+      "minutes": 6.3,
+      "pays": "its own setup"
+    },
+    {
+      "at": 1791824090614,
+      "usd": 0,
+      "kind": "evolve",
+      "ms": 172661,
+      "via": "agent",
+      "label": "Claude Code",
+      "billing": "unknown",
+      "minutes": 2.9,
+      "pays": "its own setup"
+    },
+    {
+      "at": 1791945497583,
+      "usd": 0.08,
+      "kind": "change",
+      "ms": 1306535,
+      "via": "agent",
+      "label": "Claude Code",
+      "billing": "unknown",
+      "minutes": 21.8,
+      "pays": "its own setup"
+    }
+  ],
+  "version": 1791945497583,
+  "latestVersion": 1791945497583,
+  "commands": [
+    {
+      "name": "startRun",
+      "description": "Start a new Powder Rush run"
+    },
+    {
+      "name": "pauseGame",
+      "description": "Pause or resume the current run"
+    },
+    {
+      "name": "toggleMute",
+      "description": "Mute or unmute the game sound"
+    },
+    {
+      "name": "toggleGhost",
+      "description": "Turn the best-run ghost on or off",
+      "params": {
+        "on": {
+          "type": "boolean",
+          "description": "true for on; toggles if left out"
+        }
+      }
+    },
+    {
+      "name": "setView",
+      "description": "Switch between side view and first-person view",
+      "params": {
+        "view": {
+          "type": "string",
+          "description": "side or first-person; toggles if left out"
+        }
+      }
+    },
+    {
+      "name": "goToMenu",
+      "description": "Leave the run and go to the title screen"
+    },
+    {
+      "name": "stats",
+      "description": "Report best score, distance, top speed and coins"
+    },
+    {
+      "name": "dailyChallenge",
+      "description": "Report today's daily challenge and whether it's done"
+    },
+    {
+      "name": "selectRider",
+      "description": "Pick an unlocked rider (Nova, Kai, Mika, Rook, Yuki, Blaze), unlocking it with coins if affordable",
+      "params": {
+        "name": {
+          "type": "string",
+          "description": "rider name"
+        }
+      }
+    }
+  ],
+  "memoryKeys": {
+    "save": "game progress: { best, bestDist (m), topSpeed (mph), coins, unlocked: [rider ids], rider, muted, runs, bestTrick, bestTrickPts, last: {score, dist, at}, ghost: {d, p:[dx,dy,ang...] every .25s} best-di"
+  },
+  "series": {
+    "done": 9,
+    "total": 25,
+    "focus": "visual",
+    "guide": "keep refining the first person view so its like literally triple AAA game quality insane awesome, that means you can make it three.js 3d and super high fidelity",
+    "origin": "owner",
+    "stamp": {
+      "route": {
+        "via": "agent",
+        "agentId": "claude-acp"
+      },
+      "label": "Claude Code",
+      "origin": "owner",
+      "private": false,
+      "madeOn": "claude-acp",
+      "billing": "unknown",
+      "at": 1791820847041
+    },
+    "stopped": "Stopped after 9 of 25: round 10 didn’t finish (Claude Code stopped before it passed its check; the last version stays)."
+  },
+  "collapsed": true,
+  "parent": "wrrl5roo",
+  "space": "Fun",
+  "opens": 3,
+  "openedAt": 1792081544078
+}

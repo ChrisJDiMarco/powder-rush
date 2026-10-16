@@ -1,0 +1,111 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#0b1424;font-family:-apple-system,"SF Pro Text",Inter,system-ui,sans-serif;color:#f6f9ff;-webkit-user-select:none;user-select:none;touch-action:none}
+canvas#c{position:absolute;inset:0;display:block}
+.hidden{display:none!important}
+.glass{background:rgba(235,245,255,.13);-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);border:1px solid rgba(255,255,255,.32);box-shadow:0 8px 24px rgba(10,20,50,.25),inset 0 1px 0 rgba(255,255,255,.35);border-radius:16px}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+#hud{position:absolute;left:8px;right:8px;top:46px;display:flex;gap:6px;align-items:flex-start;pointer-events:none}
+#hud .score{padding:5px 12px;min-width:64px}
+#hScore{font-size:22px;font-weight:800;letter-spacing:-.5px;font-variant-numeric:tabular-nums;text-shadow:0 1px 6px rgba(0,30,80,.35)}
+.mult{font-size:11px;font-weight:800;color:#ffd166;height:13px}
+.grid{max-height:52vh;overflow-y:auto}
+#hud .stats{display:flex;flex-direction:column;padding:5px 10px;font-size:11px;font-weight:700;font-variant-numeric:tabular-nums;gap:1px}
+.gold{color:#ffd166}
+.cbar{display:block;height:3px;border-radius:2px;background:rgba(255,255,255,.15);overflow:hidden;margin-top:2px}.cbar b{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffd166,#ff8a5a);transition:width .1s linear}
+#hud .btns{margin-left:auto;display:flex;gap:6px;pointer-events:auto}
+.ib{width:34px;height:34px;border-radius:12px;font-size:13px;font-weight:800}
+.ib:active,.play:active,.sec:active,.arrow:active{transform:scale(.94)}
+#aval{position:absolute;left:50%;transform:translateX(-50%);bottom:14px;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:900;letter-spacing:1px;color:#fff;background:rgba(200,40,60,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:6px 10px;border-radius:12px;border:1px solid rgba(255,160,170,.5);animation:pulse .8s ease-in-out infinite alternate}
+#aval i{width:90px;height:6px;border-radius:3px;background:rgba(255,255,255,.2);overflow:hidden}
+#aval b{display:block;height:100%;width:50%;background:linear-gradient(90deg,#ffd166,#ff5a6a)}
+@keyframes pulse{to{background:rgba(220,40,60,.55)}}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:44px 14px 12px;box-sizing:border-box;background:radial-gradient(ellipse at 50% 40%,rgba(10,20,50,0) 30%,rgba(8,14,36,.35))}
+.logo{display:flex;flex-direction:column;align-items:center;line-height:.86;filter:drop-shadow(0 4px 14px rgba(20,40,90,.45))}
+.logo span{font-size:15px;font-weight:800;letter-spacing:9px;color:#e6f3ff;margin-left:9px}
+.logo b{font-size:46px;font-weight:900;font-style:italic;letter-spacing:-1px;background:linear-gradient(180deg,#fff 20%,#bfe3ff 55%,#7fb6ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.85}
+.card{padding:10px 12px;box-sizing:border-box}
+.rider{display:grid;grid-template-columns:28px 1fr 28px;align-items:center;width:min(300px,92%);row-gap:2px}
+.rider canvas{width:100%;height:auto;max-height:120px;justify-self:center}
+.rname{grid-column:1/4;text-align:center;font-weight:800;font-size:15px}
+.rinfo{grid-column:1/4;justify-self:center;font-size:12px;font-weight:700;padding:4px 12px;border-radius:10px;background:rgba(255,255,255,.14)}
+.rinfo.buy{background:linear-gradient(180deg,#ffd166,#f4a93a);color:#3a2300}
+.rinfo.no{opacity:.6}
+.arrow{font-size:26px;font-weight:300;height:44px;border-radius:12px}
+.play{background:linear-gradient(180deg,#ffffff,#d9ecff);color:#14305e;font-weight:900;font-size:16px;padding:11px 34px;border-radius:16px;box-shadow:0 8px 22px rgba(60,120,220,.35),inset 0 -2px 0 rgba(60,110,200,.25);transition:transform .12s}
+.sec{font-weight:700;font-size:13px;padding:8px 18px;border-radius:12px;background:rgba(255,255,255,.12)}
+.best{font-size:11px;font-weight:700;padding:6px 12px;display:flex;gap:12px}
+.help{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;max-width:330px}.help span{font-size:10.5px;padding:3px 8px;border-radius:9px;background:rgba(10,25,50,.45);color:#e8f2ff}.help b{color:#fff}
+.daily{font-size:11px;padding:5px 10px;border-radius:10px;background:linear-gradient(90deg,rgba(255,209,102,.22),rgba(255,140,90,.18));border:1px solid rgba(255,209,102,.45);text-align:center;max-width:330px}.daily b{color:#ffd166}.daily.done{background:rgba(95,227,154,.16);border-color:rgba(95,227,154,.45)}.daily.done b{color:#7ff0b0}
+.next{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:700;opacity:.9}.next i{width:70px;height:5px;border-radius:3px;background:rgba(255,255,255,.2);overflow:hidden}.next i b{display:block;height:100%;background:linear-gradient(90deg,#ffd166,#f4a93a)}
+.life{font-size:10px;opacity:.85;text-align:center;max-width:330px;text-shadow:0 1px 4px rgba(0,10,30,.6);font-weight:600}.grid .dly span{font-size:10px;opacity:.75}.grid .dly.ok b{color:#7ff0b0}
+.screen{gap:7px!important}.logo b{font-size:40px!important}
+@media (max-height:520px){.screen{gap:5px!important}.logo b{font-size:34px!important}.rider canvas{max-height:96px}.help{display:none}}
+.corner{position:absolute;right:10px;top:46px}
+.col{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:220px}
+h2{margin:0 0 4px;font-size:20px;font-weight:900;letter-spacing:.5px}
+.wipe{font-size:30px;font-weight:900;font-style:italic;letter-spacing:-.5px;background:linear-gradient(180deg,#fff,#a9d2ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nb{font-size:11px;font-weight:900;color:#3a2300;background:linear-gradient(180deg,#ffe08a,#f6b03e);padding:3px 10px;border-radius:8px;letter-spacing:1px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;margin:2px 0 4px}
+.grid div{background:rgba(255,255,255,.1);border-radius:10px;padding:5px 8px}
+.grid small{display:block;font-size:9px;opacity:.7;font-weight:700;letter-spacing:.6px;text-transform:uppercase}
+.grid b{font-size:15px;font-variant-numeric:tabular-nums}
+.grid .wide{grid-column:1/3}
+</style><style>.tbtns{position:absolute;top:10px;left:10px;display:flex;gap:6px;z-index:3}.ib.off{opacity:.45}#tPhase{white-space:normal;line-height:1.35;font-size:10px;max-width:86%;text-align:center;margin-left:auto;margin-right:auto}</style></head>
+<body>
+<canvas id="c"></canvas>
+<div id="hud" class="hidden">
+  <div class="glass score"><div id="hScore">0</div><div class="mult" id="hMult"></div><i class="cbar"><b id="hCombo"></b></i></div>
+  <div class="glass stats"><span id="hDist">0 m</span><span id="hSpd">0 mph</span><span id="hCoin" class="gold">◉ 0</span></div>
+  <div class="btns"><button id="bPause" class="glass ib">❚❚</button><button id="bMute" class="glass ib">♪</button><button id="bGhost" class="glass ib">👻</button><button id="bView" class="glass ib">🎥</button></div>
+</div>
+<div id="aval" class="hidden"><span id="avalTxt">⚠ AVALANCHE</span><i><b id="avalBar"></b></i></div>
+<div id="title" class="screen">
+  <div class="logo"><span>POWDER</span><b>RUSH</b></div>
+  <div class="sub" id="tPhase">Next run · Day</div>
+  <div class="glass card rider">
+    <button class="arrow" id="rPrev">‹</button>
+    <canvas id="rc" width="240" height="150"></canvas>
+    <button class="arrow" id="rNext">›</button>
+    <div class="rname" id="rName"></div>
+    <button class="rinfo" id="rInfo"></button>
+  </div>
+  <button class="play" id="bPlay">▶&nbsp; Drop in</button>
+  <div class="glass best" id="tBest"></div>
+  <div class="daily" id="tDaily"></div>
+  <div class="next" id="tNext"></div>
+  <div class="life" id="tLife"></div>
+  <div class="help"><span><b>Hold</b> tuck</span><span><b>Release</b> jump</span><span><b>Hold in air</b> flip</span><span><b>↓ / swipe</b> carve · grab</span><span><b>V</b> view · <b>G</b> ghost · <b>M</b> mute</span></div>
+  <button id="tMute" class="glass ib corner">♪</button>
+  <div class="tbtns"><button id="tGhost" class="glass ib">👻</button><button id="tView" class="glass ib">🎥</button></div>
+</div>
+<div id="pause" class="screen hidden"><div class="glass card col"><h2>Paused</h2>
+  <button class="play" id="bResume">Resume</button><button class="sec" id="bRestart">Restart run</button><button class="sec" id="pGhost">👻 Ghost</button><button class="sec" id="pView">🎥 View</button><button class="sec" id="bMenu">Menu</button></div></div>
+<div id="over" class="screen hidden"><div class="glass card col">
+  <div class="wipe" id="oTitle">WIPEOUT</div><div class="nb hidden" id="oNew">★ NEW BEST</div>
+  <div class="grid" id="oGrid"></div>
+  <button class="play" id="bRetry">↻&nbsp; Retry</button><button class="sec" id="bMenu2">Menu</button></div></div>
+<script src="js/core.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/terrain.js"></script>
+<script src="js/player.js"></script>
+<script src="js/render-bg.js"></script>
+<script src="js/render-world.js"></script>
+<script src="js/render-fp.js"></script>
+<script src="js/render-fp-fx.js"></script>
+<script src="js/render-fp-post.js"></script>
+<script src="js/render-fp-hazards.js"></script>
+<script src="js/render-fp-rig.js"></script>
+<script src="js/render-fp-forest.js"></script><script type="module">import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js'; window.App.THREE = THREE;</script>
+<script src="js/fp3d/core.js"></script>
+<script src="js/fp3d/land.js"></script>
+<script src="js/fp3d/props.js"></script>
+<script src="js/fp3d/rig.js"></script>
+<script src="js/fp3d/fx.js"></script>
+<script src="js/fp3d/hud.js"></script>
+<script src="js/fp3d/view.js"></script>
+<script src="js/game.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script></body></html>
